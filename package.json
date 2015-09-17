@@ -1,0 +1,31 @@
+{
+  "name": "cops",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "gqueste",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "angular": "^1.4.1",
+    "angular-cookies": "^1.4.2",
+    "angular-route": "^1.4.1",
+    "angular-sanitize": "^1.4.3",
+    "angular-ui-bootstrap": "^0.13.1",
+    "angular-ui-router": "^0.2.15",
+    "body-parser": "^1.13.2",
+    "bootstrap": "^3.3.5",
+    "express": "^4.8.5",
+    "font-awesome": "^4.3.0",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.0",
+    "restangular": "^1.5.1"
+  },
+  "devDependencies": {
+    "foreman": "^1.4.1",
+    "karma": "^0.12.37",
+    "karma-jasmine": "^0.3.6 ",
+    "karma-chrome-launcher": "^0.2.0",
+    "angular-mocks": "^1.4.2"
+  }
+}

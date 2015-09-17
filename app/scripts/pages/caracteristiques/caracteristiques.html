@@ -1,0 +1,40 @@
+<h1>Caracteristiques</h1>
+<div>
+    <h3>Regles</h3>
+    <ul>
+        <li>À la création de son personnage, chaque joueur possède 21 points à diviser dans ces 7 caractéristiques.</li>
+        <li>Pour un membre du COPS, le minimum possible dans une caractéristique est 2.</li>
+        <li>On ne peut donc pas créer un personnage qui ne possède pas au moins 2 dans toutes les caractéristiques.</li>
+        <li>Un personnage qui vient d’être créé ne peut pas posséder plus d’une caractéristique associée à une valeur de 5.</li>
+    </ul>
+</div>
+<div class="text-center">
+    Il reste {{service.getPointsDisponibles()}} points a repartir.
+</div>
+<div class="row">
+    <div class="col-sm-4 row panel panel-default" ng-repeat="carac in service.getCaracteristiques()">
+        <div class="panel-body">
+            <div class="col-sm-4">
+                <strong popover="{{carac.description}}" popover-placement="right" popover-trigger="mouseenter" popover-append-to-body="true">{{carac.nom}}</strong>
+            </div>
+            <div class="col-sm-4">
+                {{carac.points}}
+            </div>
+            <div class="col-sm-4 input-group input-group-sm input-group-btn">
+                <button class='btn btn-default' type='button' ng-disabled="carac.points >= service.getMaximumValue() || (carac.points+1 >= service.getMaximumValue() && service.getMaximumAchieved()) || service.getPointsDisponibles() <= 0" ng-click="caracUp(carac)">
+                    <span class='glyphicon glyphicon-chevron-up'></span>
+                </button>
+                <button class='btn btn-default' type='button' ng-disabled="service.getMinimumValue() >= carac.points" ng-click="caracDown(carac)">
+                    <span class='glyphicon glyphicon-chevron-down'></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <strong>Points de vie : </strong>
+    {{service.getPointsDeVie()}}
+</div>
+<div class="text-center">
+    <button class="btn btn-primary">Compétences</button>
+</div>
