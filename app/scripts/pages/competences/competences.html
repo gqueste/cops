@@ -1,4 +1,17 @@
 <h1>Compétences</h1>
+<div class="text-center">
+    Il reste {{service.getPointsDisponibles()}} points a repartir.
+</div>
 <div>
+    Choisir une capacité de base :
+    <select ng-model="baseComp" ng-change="changeChoixBase(baseComp)">
+        <option ng-repeat="choice in service.getChoixBasePossibilites()">{{service.getCompetences()[choice].nom}}</option>
+    </select>
+</div>
 
+
+<div class="row panel panel-default" ng-repeat="comp in service.getCompetences()">
+    <div class="panel-body">
+        {{comp.nom}} {{comp.points}}
+    </div>
 </div>

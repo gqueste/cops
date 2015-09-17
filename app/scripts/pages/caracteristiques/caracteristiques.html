@@ -36,5 +36,5 @@
     {{service.getPointsDeVie()}}
 </div>
 <div class="text-center">
-    <button class="btn btn-primary">Compétences</button>
+    <button class="btn btn-primary" ng-disabled="service.getPointsDisponibles() > 0" ng-click="goCompetences()">Compétences</button>
 </div>

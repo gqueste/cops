@@ -1,12 +1,10 @@
 angular.module('cops').
 
-    controller('CaracteristiquesCtrl', ['$scope', 'CaracteristiquesService', function($scope, CaracteristiquesService){
+    controller('CaracteristiquesCtrl', ['$scope', 'CaracteristiquesService', '$state', function($scope, CaracteristiquesService, $state){
 
         $scope.service = CaracteristiquesService;
 
         init();
-
-        console.log($scope.service.getMinimumValue());
 
         $scope.caracUp = function(carac){
             carac.points ++;
@@ -29,6 +27,10 @@ angular.module('cops').
                 CaracteristiquesService.getCaracteristiques()[key].points = 2;
                 CaracteristiquesService.setPointsDisponibles(CaracteristiquesService.getPointsDisponibles()-2);
             });
+        }
+
+        $scope.goCompetences = function(){
+            $state.go('competences');
         }
 
     }]);

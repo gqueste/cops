@@ -11,7 +11,8 @@ angular.module('cops').
         var limiteDepenseParCompetenceBase = 2;
         var limiteNiveauOption = 8;
 
-        var choixBaseFait = false;
+        var choixBase = undefined;
+        var choixBasePossibilites = ['eloquence', 'intimidation', 'rhetorique'];
         var choixBaseNiveau = 7;
 
         var competences = {
@@ -248,13 +249,76 @@ angular.module('cops').
         };
 
         return{
-            getCompetences : getCompetences
+            getCompetences : getCompetences,
+            getMinValue : getMinValue,
+            getMaxValue : getMaxValue,
+            getPointsDisponibles : getPointsDisponibles,
+            setPointsDisponibles : setPointsDisponibles,
+            getCout : getCout,
+            getPointsDisponiblesBases : getPointsDisponiblesBases,
+            setPointsDisponiblesBases : setPointsDisponiblesBases,
+            getLimiteDepenseParCompetenceBase : getLimiteDepenseParCompetenceBase,
+            getLimiteNiveauOption : getLimiteNiveauOption,
+            getChoixBase : getChoixBase,
+            setChoixBase : setChoixBase,
+            getChoixBaseNiveau : getChoixBaseNiveau,
+            getChoixBasePossibilites : getChoixBasePossibilites
         };
 
         function getCompetences(){
             return competences;
         }
 
+        function getMinValue(){
+            return minValue;
+        }
 
+        function getMaxValue(){
+            return maxValue;
+        }
+
+        function getPointsDisponibles(){
+            return pointsDisponibles;
+        }
+
+        function setPointsDisponibles(points){
+            pointsDisponibles = points;
+        }
+
+        function getCout(){
+            return cout;
+        }
+
+        function getPointsDisponiblesBases(){
+            return pointsDisponiblesBase;
+        }
+
+        function setPointsDisponiblesBases(points){
+            pointsDisponiblesBase = points;
+        }
+
+        function getLimiteDepenseParCompetenceBase(){
+            return limiteDepenseParCompetenceBase;
+        }
+
+        function getLimiteNiveauOption(){
+            return limiteNiveauOption;
+        }
+
+        function getChoixBase(){
+            return choixBase;
+        }
+
+        function setChoixBase(competence){
+            choixBase = competence;
+        }
+
+        function getChoixBaseNiveau(){
+            return choixBaseNiveau;
+        }
+
+        function getChoixBasePossibilites(){
+            return choixBasePossibilites;
+        }
 
     }]);
