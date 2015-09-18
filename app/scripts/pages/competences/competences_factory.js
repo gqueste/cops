@@ -22,6 +22,7 @@ angular.module('cops').
                 caracteristique : 'Coordination',
                 description : "Posséder cette compétence vous pose un bonhomme. Outre votre pratique du tir au fusil (acquise à l'armée, en chassant ou en tirant sur des boîtes de conserve dans le désert), vous avez appris à entretenir correctement une arme et à en tirer le meilleur rendement. Les véritables passionnés auront même pu acquérir une connaissance approfondie du monde des armes, en se tenant au courant des dernières innovations et nouveautés.",
                 points : 8,
+                pointsBase : 8,
                 specialisation : {
                     niveau : 5,
                     specialitesPossibles : ["Fusil à lunette", "Fusil", "Fusil à pompe"]
@@ -33,6 +34,7 @@ angular.module('cops').
                 caracteristique : "Réflexes",
                 description : "Que ce soit dans la rue, à l'armée, ou en suivant un enseignement martial, vous avez appris à vous battre avec une arme de contact (couteau, matraque, batte de base-ball, kryss...) ou tout autre type d'arme improvisée (queue de billard, bouteille de bourbon, barreau de chaise...). Dans le cas d’une arme exotique, on doit préciser de quelle arme il s’agit.",
                 points : 8,
+                pointsBase : 8,
                 specialisation : {
                     niveau : 6,
                     specialitesPossibles : ["Couteau", "Matraque", "Arme exotique"]
@@ -43,7 +45,8 @@ angular.module('cops').
                 niveau : 'base',
                 caracteristique : "Coordination",
                 description : "Cette compétence gouverne l'utilisation des pistolets et revolvers. Il s'agit bien sûr de tirer, mais aussi d'entretenir correctement votre arme, de connaître ses conditions optimales d'utilisation et les règles de sécurité dont il faut faire preuve en la manipulant. Un niveau élevé ne dénotera pas seulement une extrême habileté au tir, mais pourra aussi figurer une passion aiguë pour les armes. Le personnage s'intéressera aux derniers modèles sortis et pourra évaluer une arme, sa provenance et son type de fabrication.",
-                points : 7
+                points : 7,
+                pointsBase : 7
             },
             armeLourde : {
                 nom : "Arme lourde",
@@ -61,14 +64,16 @@ angular.module('cops').
                 niveau : 'base',
                 caracteristique : "Carrure",
                 description : "Plus haut, plus vite, plus fort. Vous avez fait vôtre la devise du baron de Coubertin et grâce à un entraînement rigoureux, vous savez exploiter au mieux vos possibilités physiques. Vous savez nager, vous courrez vite et/ou longtemps, et vous pouvez tenter des sauts difficiles ou hasardeux, bref, rien de ce qui est physique ne vous échappe.",
-                points : 7
+                points : 7,
+                pointsBase : 7
             },
             bureaucratie : {
                 nom : "Bureaucratie",
                 niveau : 'base',
                 caracteristique : "Sang-froid",
                 description : "Cette compétence sera bien utile à ceux qui veulent se mesurer aux pesanteurs administratives. Vous êtes au courant des us et coutumes de l'administration. Vous connaissez son fonctionnement et savez vous adresser à la bonne personne pour obtenir ce que vous désirez. Qu'il s'agisse d'obtenir rapidement un formulaire (ou une autorisation) ou de remplir correctement un rapport, cette compétence s'avérera vite essentielle.",
-                points : 8
+                points : 8,
+                pointsBase : 8
             },
             conduite : {
                 nom : "Conduite",
@@ -76,6 +81,7 @@ angular.module('cops').
                 caracteristique : "Coordination",
                 description : "Vous avez appris à conduire et à manœuvrer un véhicule terrestre. Vous connaissez les manœuvres de base et avez quelques notions du fonctionnement et de l'entretien de l'engin.",
                 points : 7,
+                pointsBase : 7,
                 specialisation : {
                     niveau : 5,
                     specialitesPossibles: ["Moto", "Camion", "Chenillé"],
@@ -99,6 +105,7 @@ angular.module('cops').
                 caracteristique : "Réflexes",
                 description : "Vous avez appris à vous battre à mains nues en utilisant toutes les armes que vous a données la nature. Vous distribuez les coups de poing, les coups de pied ou les coups de boule (que ce soit au singulier ou au pluriel), vous mordez, tordez, déboîtez, dans un style bien peu académique mais qui sait être diablement efficace. À partir du niveau 7+, vous devrez choisir une spécialisation entre les projections, les immobilisations et les coups portés.",
                 points : 7,
+                pointsBase : 7,
                 specialisation : {
                     specialitesPossibles : ["Coups", "Projections", "Immobilisations"]
                 }
@@ -115,7 +122,8 @@ angular.module('cops').
                 niveau : 'base',
                 caracteristique : "Coordination",
                 description : "Vous avez appris à vous déplacer ou à agir furtivement. Vous savez vous déplacer avec calme et circonspection et tirer parti de l’environnement qui vous entoure pour ne pas être vu ou entendu. Outre cette capacité de discrétion dans vos mouvements, vous pouvez utiliser cette compétence pour masquer certains de vos faits et gestes.",
-                points : 7
+                points : 7,
+                pointsBase : 7
             },
             electronique : {
                 nom : "Électronique",
@@ -126,7 +134,7 @@ angular.module('cops').
             },
             eloquence : {
                 nom : "Éloquence",
-                niveau : 'optionBase',
+                niveau : 'option',
                 caracteristique : "Charme",
                 description : "Pour qui sait la manier avec habileté, la parole peut être une arme dévastatrice. Cette compétence vous permettra d’en user avec aisance, et grâce à elle, vous pourrez frapper votre auditoire là où il risque d'avoir vraiment mal, sur le terrain des sentiments et des passions. Un bon jet d’Éloquence, et c'est un public hostile qui pourra être retourné, des amis galvanisés ou un auditoire convaincu. Surtout, lors d'un interrogatoire, cette compétence vous permettra d'attaquer la corde sensible d'un prévenu et de le prendre par les sentiments (le flic gentil et le flic méchant par exemple). Cette compétence est l’une des trois qui seront utilisées dans le cadre d’une procédure d’interrogatoire.",
                 points : 0
@@ -144,6 +152,7 @@ angular.module('cops').
                 caracteristique : "Éducation",
                 description : "Difficile de se passer de l’informatique de nos jours. Que ce soit pour conduire sa voiture, taper un rapport, rechercher de la documentation ou se détendre après une journée de boulot, l’utilisation des ordinateurs est quotidienne, alors mieux vaut en connaître le fonctionnement. Avec cette compétence, vous saurez installer un ordinateur, vous pourrez le dépanner, l’entretenir, formater des disques durs, en rajouter, réparer la base de registre, ajouter ou changer des pilotes, bref, mettre les mains dans le cambouis. Un niveau plus élevé (à partir de 5+) cette compétence dénotera une connaissance approfondie de l’architecture des machines et la capacité à les programmer.",
                 points : 7,
+                pointsBase : 7,
                 specialisation : {
                     niveau : 5,
                     specialitesPossibles : ["Piratage", "Programmation"]
@@ -154,11 +163,12 @@ angular.module('cops').
                 niveau : 'base',
                 caracteristique : "Perception",
                 description : "Nul ne sait mieux qu’un flic percevoir la vie de la rue. Avec le temps, les flics en patrouille finissent par acquérir ce que tous nomment les yeux de flic, cette perception aiguë et presque surnaturelle, ce mélange de perspicacité, d’intuition, d’acuité des sens et de l’esprit qui permet aux flics de repérer un pickpocket au milieu d’une foule, de remarquer un commerçant au comportement troublant, de repérer une crack house en passant simplement devant. Cette compétence ne s’applique pas sur les scènes de crimes et elle ne remplace pas une utilisation classique de la caractéristique de Perception. Elle représente simplement ce don que peuvent avoir les vieux flics en patrouille à repérer les problèmes peu de temps avant qu’ils n’arrivent.",
-                points : 9
+                points : 9,
+                pointsBase : 9
             },
             intimidation : {
                 nom : "Intimidation",
-                niveau : 'optionBase',
+                niveau : 'option',
                 caracteristique : "Sang-Froid",
                 description : "Face à certains esprits récalcitrants, montrer les dents pourra parfois être bien utile pour obtenir des renseignements, des aveux ou un laisser passer. L’intimidation n’est pas forcément physique, elle peut être composée d’un subtil éventail de menaces, de sous-entendus ou d’allusions à un châtiment qui pourrait s’abattre sur le réfractaire. Certains puristes de l'interrogatoire jugent l'usage de cette compétence comme un manque définitif de finesse et de discernement. Pourtant, elle est souvent couronnée de succès. Force est aussi de constater que c’est cette compétence qui permettra de gérer les interrogatoires les plus « physiques. »",
                 points : 0
@@ -211,7 +221,8 @@ angular.module('cops').
                 niveau : 'base',
                 caracteristique : "Coordination",
                 description : "Le personnage a appris les gestes qui sauvent. Lorsqu’il se trouve face à une situation d’urgence, en présence d’un blessé, il sait réagir avec efficacité et rapidité pour stabiliser l’état du patient, soulager sa souffrance et l’empêcher de mourir, en attendant que des moyens plus « lourds » n’arrivent. Ces manœuvres simples passent par un contrôle du pouls et de la respiration du patient, et une intervention rapide s’ils sont déficients (massage cardiaque, respiration artificielle, etc.). Le personnage ne sera pas qualifié pour des tâches plus complexes comme la réduction d’une fracture ou le diagnostic précis d’un traumatisme ou d’une maladie.",
-                points : 8
+                points : 8,
+                pointsBase : 8
             },
             psychologie : {
                 nom : "Psychologie",
@@ -222,7 +233,7 @@ angular.module('cops').
             },
             rhetorique : {
                 nom : "Rhétorique",
-                niveau : 'optionBase',
+                niveau : 'option',
                 caracteristique : "Éducation",
                 description : "Vous avez appris à raisonner et surtout à mettre en parole de manière argumentée et précise votre cheminement intellectuel. Vous pouvez tenter d'amener votre interlocuteur à vous écouter ou à vous parler, en lui démontrant rationnellement pourquoi il doit le faire. Là ou l'Éloquence et l'Intimidation frappent la passion et la sensibilité humaine, la Rhétorique choisit d'attaquer froidement sur le terrain du jugement, de la logique et de la raison. Cette compétence est l’une des trois qui seront utilisées dans le cadre d’une procédure d’interrogatoire.",
                 points : 0
@@ -232,7 +243,8 @@ angular.module('cops').
                 niveau : 'base',
                 caracteristique : "Perception",
                 description : "Lors de l’arrivée sur les lieux d’un crime, il est vital de protéger l’environnement des agressions extérieures afin d’éviter que de gros pieds crottés n’écrasent stupidement tous les indices. Cette compétence permettra au personnage de savoir ce qu’il faut faire pour préserver et récolter aussi rapidement que sûrement tous les indices présents sur les lieux d’un crime. Le flic saura quoi chercher et où le chercher, et surtout, saura recueillir les indices sans compromettre irrémédiablement leurs chances d’utilisation par les limiers de la police médico-légale.",
-                points : 7
+                points : 7,
+                pointsBase : 7
             },
             tirRafales : {
                 nom : "Tir en rafales",

@@ -10,10 +10,10 @@ angular.module('cops').
         };
 
         function reinitChoixBase(){
-            for(var i = 0; i < CompetencesService.getChoixBasePossibilites(); i++){
-                var comp = CompetencesService.getCompetences()[CompetencesService.getChoixBasePossibilites()[i]];
+            CompetencesService.getChoixBasePossibilites().forEach(function(value){
+                var comp = CompetencesService.getCompetences()[value];
                 var seuil = 10;
-                if(CompetencesService.getChoixBasePossibilites()[i] == CompetencesService.getChoixBase()){
+                if(value == CompetencesService.getChoixBase()){
                     seuil = 7;
                 }
                 if(comp.points > 0){
@@ -21,12 +21,36 @@ angular.module('cops').
                     CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() + diff);
                 }
                 comp.points = 0;
-            }
+                comp.niveau = 'option';
+            });
         }
 
         function changeChoix(choix){
-            CompetencesService.setChoixBase = choix;
+            CompetencesService.setChoixBase(choix);
             CompetencesService.getCompetences()[choix].points = 7;
+            CompetencesService.getCompetences()[choix].pointsBase = 7;
+            CompetencesService.getCompetences()[choix].niveau = 'base';
+        }
+
+        $scope.acquerirComp = function(comp){
+            comp.points = 9;
+            CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() - 1);
+        };
+
+        $scope.retirerComp = function(comp){
+            CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() + CompetencesService.getMaxValue() + 1 - comp.points);
+            comp.points = 0;
+        };
+
+        $scope.canCompUp = function(comp){
+            var canCompUp = true;
+            if(comp.niveau == 'base'){
+                canCompUp = comp.points < comp.pointsBase;
+            }
+            else{
+                canCompUp = comp.points < CompetencesService.getMaxValue();
+            }
+            return canCompUp;
         }
 
     }]);
