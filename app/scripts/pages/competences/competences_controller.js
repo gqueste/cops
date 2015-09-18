@@ -39,6 +39,17 @@ angular.module('cops').
 
         $scope.retirerComp = function(comp){
             CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() + CompetencesService.getMaxValue() + 1 - comp.points);
+            if(comp.specialisation){
+                if(comp.specialisation.specialitesGagnees){
+                    if(comp.specialisation.specialitesGagnees.length > 0){
+                        comp.specChoosen = false;
+                        comp.specialisation.specialitesGagnees.forEach(function(element){
+                            comp.specialisation.specialitesPossibles.push(element);
+                        });
+                        comp.specialisation.specialitesGagnees = [];
+                    }
+                }
+            }
             comp.points = 0;
         };
 
@@ -51,6 +62,77 @@ angular.module('cops').
                 canCompUp = comp.points < CompetencesService.getMaxValue();
             }
             return canCompUp;
-        }
+        };
+
+        $scope.canCompDown = function(comp){
+            var canCompDown = CompetencesService.getPointsDisponibles();
+            if(canCompDown){
+                if(comp.niveau == 'option'){
+                    canCompDown = comp.points > CompetencesService.getLimiteNiveauOption();
+                }
+                else {
+                    canCompDown = CompetencesService.getPointsDisponiblesBases() > 0;
+                    if(canCompDown){
+                        canCompDown = comp.pointsBase - comp.points < CompetencesService.getLimiteDepenseParCompetenceBase();
+                    }
+                }
+            }
+            return canCompDown;
+        };
+
+        $scope.compUp = function(comp) {
+            comp.points += 1;
+            CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() + 1);
+            if(comp.niveau == 'base'){
+                CompetencesService.setPointsDisponiblesBases(CompetencesService.getPointsDisponiblesBases() + 1);
+            }
+            if(comp.specialisation){
+                if(comp.specialisation.specialitesGagnees){
+                    if(comp.specialisation.specialitesGagnees.length > 0 && comp.specialisation.niveau < comp.points){
+                        comp.specChoosen = false;
+                        comp.specialisation.specialitesGagnees.forEach(function(element){
+                            comp.specialisation.specialitesPossibles.push(element);
+                        });
+                        comp.specialisation.specialitesGagnees = [];
+                    }
+                }
+            }
+
+        };
+
+        $scope.compDown = function(comp){
+            comp.points -= 1;
+            CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() - 1);
+            if(comp.niveau == 'base'){
+                CompetencesService.setPointsDisponiblesBases(CompetencesService.getPointsDisponiblesBases() - 1);
+            }
+        };
+
+        $scope.addSpec = function(comp, spec){
+            if(comp.specialisation.specialitesGagnees == undefined){
+                comp.specialisation.specialitesGagnees = [];
+            }
+            comp.specialisation.specialitesGagnees.push(spec);
+            comp.specChoosen = true;
+            var compSpecs = [];
+            comp.specialisation.specialitesPossibles.forEach(function(element){
+                if(element != spec){
+                    compSpecs.push(element);
+                }
+            });
+            comp.specialisation.specialitesPossibles = compSpecs;
+        };
+
+        $scope.removeSpec = function(comp, spec){
+            comp.specialisation.specialitesPossibles.push(spec);
+            comp.specChoosen = false;
+            var compSpecs = [];
+            comp.specialisation.specialitesGagnees.forEach(function(element){
+                if(element != spec){
+                    compSpecs.push(element);
+                }
+            });
+            comp.specialisation.specialitesGagnees = compSpecs;
+        };
 
     }]);

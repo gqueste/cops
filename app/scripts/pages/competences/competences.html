@@ -10,12 +10,11 @@
 </div>
 
 <div class="panel panel-default">
-    <div class="panel-heading">Compétences</div>
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="comp in service.getCompetences()">
             <div class="row">
                 <div class="col-xs-8">
-                    <span popover="{{comp.description}}" popover-placement="right" popover-trigger="mouseenter" popover-append-to-body="true">{{comp.nom}}</span>
+                    <span popover="{{comp.description}}" popover-placement="right" popover-trigger="mouseenter" popover-append-to-body="true"><strong>{{comp.nom}}</strong></span>
                 </div>
                 <div class="col-xs-4 text-center">
                     <div class="row" ng-if="comp.points > 0">
@@ -23,7 +22,7 @@
                             {{comp.points}} +
                         </div>
                         <div class="col-xs-6 input-group input-group-sm input-group-btn text-left">
-                            <button class='btn btn-default' type='button' ng-click="compDown(comp)">
+                            <button class='btn btn-default' type='button' ng-disabled="!canCompDown(comp)" ng-click="compDown(comp)">
                                 <span class='glyphicon glyphicon-chevron-down'></span>
                             </button>
                             <button class='btn btn-default' type='button' ng-disabled="!canCompUp(comp)" ng-click="compUp(comp)">
@@ -33,8 +32,24 @@
                         </div>
                     </div>
                     <div ng-if="comp.points == 0">
-                        <button class="btn btn-sm btn-block btn-primary" type="button" ng-click="acquerirComp(comp)">Acquérir la compétence</button>
+                        <button class="btn btn-sm btn-block btn-primary" type="button" ng-disabled="service.getPointsDisponibles() <= 0" ng-click="acquerirComp(comp)">Acquérir la compétence</button>
                     </div>
+                </div>
+            </div>
+            <div class="row" ng-if="(comp.specialisation.niveau >= comp.points && comp.points > 0) || comp.specialisation.specialitesObtenues.length > 0">
+                <div class="col-xs-12" ng-if="comp.specialisation.specialitesObtenues.length > 0 || comp.specialisation.specialitesGagnees.length > 0">
+                    Spécialités obtenues :
+                     <span class="panel panel-default" ng-repeat="spec in comp.specialisation.specialitesObtenues">
+                        {{spec}}
+                    </span>
+                    <span class="panel panel-default" ng-repeat="spec in comp.specialisation.specialitesGagnees">
+                        {{spec}} <i class="fa fa-times" style="cursor:pointer" ng-click="removeSpec(comp, spec)"></i>
+                    </span>
+                </div>
+                <div class="col-xs-12" ng-if="(comp.specialisation.niveau >= comp.points && comp.points > 0) && comp.specialisation.specialitesPossibles.length > 0 && !comp.specChoosen">
+                    Ajouter une spécialité :
+                    <select ng-model="spec" ng-options="possibility for possibility in comp.specialisation.specialitesPossibles"></select>
+                    <button class="btn btn-sm btn-primary" type="button" ng-disabled="!spec" ng-click="addSpec(comp, spec)">Ajouter</button>
                 </div>
             </div>
         </li>
