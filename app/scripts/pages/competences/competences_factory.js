@@ -96,7 +96,7 @@ angular.module('cops').
                 points : 0,
                 specialisation : {
                     niveau : 9,
-                    specialitesPossibles: []
+                    customSpec: ''
                 }
             },
             corpsACorps : {

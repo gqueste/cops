@@ -46,12 +46,20 @@
                         {{spec}} <i class="fa fa-times" style="cursor:pointer" ng-click="removeSpec(comp, spec)"></i>
                     </span>
                 </div>
-                <div class="col-xs-12" ng-if="(comp.specialisation.niveau >= comp.points && comp.points > 0) && comp.specialisation.specialitesPossibles.length > 0 && !comp.specChoosen">
+                <div class="col-xs-12" ng-if="(comp.specialisation.niveau >= comp.points && comp.points > 0) && (comp.specialisation.specialitesPossibles.length > 0 || comp.specialisation.customSpec != undefined) && !comp.specChoosen">
                     Ajouter une spécialité :
-                    <select ng-model="spec" ng-options="possibility for possibility in comp.specialisation.specialitesPossibles"></select>
-                    <button class="btn btn-sm btn-primary" type="button" ng-disabled="!spec" ng-click="addSpec(comp, spec)">Ajouter</button>
+                    <span ng-if="comp.specialisation.specialitesPossibles">
+                        <select ng-model="spec" ng-options="possibility for possibility in comp.specialisation.specialitesPossibles"></select>
+                        <button class="btn btn-sm btn-primary" type="button" ng-disabled="!spec" ng-click="addSpec(comp, spec)">Ajouter</button>
+                    </span>
+                    <span ng-if="comp.specialisation.customSpec != undefined">
+                        <input ng-model="specLibre" type="text" placeholder="Nom de la spécialité" ng-change="changeCustomSpec(comp, specLibre)">
+                    </span>
                 </div>
             </div>
         </li>
     </ul>
+</div>
+<div class="text-center">
+    <button class="btn btn-primary" type="button" ng-disabled="!canGoToHistorique()" ng-click="goToHistorique()">Historique</button>
 </div>

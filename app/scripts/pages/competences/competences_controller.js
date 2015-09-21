@@ -1,6 +1,6 @@
 angular.module('cops').
 
-    controller('CompetencesCtrl', ['$scope', 'CompetencesService', function($scope, CompetencesService){
+    controller('CompetencesCtrl', ['$scope', 'CompetencesService', '$state', function($scope, CompetencesService, $state){
 
         $scope.service = CompetencesService;
 
@@ -33,6 +33,7 @@ angular.module('cops').
         }
 
         $scope.acquerirComp = function(comp){
+            console.log(comp);
             comp.points = 9;
             CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() - 1);
         };
@@ -48,6 +49,9 @@ angular.module('cops').
                         });
                         comp.specialisation.specialitesGagnees = [];
                     }
+                }
+                if(comp.specialisation.customSpec){
+                    comp.specialisation.customSpec = undefined;
                 }
             }
             comp.points = 0;
@@ -96,6 +100,11 @@ angular.module('cops').
                         comp.specialisation.specialitesGagnees = [];
                     }
                 }
+                if(comp.specialisation.customSpec){
+                    if(comp.specialisation.niveau < comp.points){
+                        comp.specialisation.customSpec = undefined;
+                    }
+                }
             }
 
         };
@@ -123,6 +132,10 @@ angular.module('cops').
             comp.specialisation.specialitesPossibles = compSpecs;
         };
 
+        $scope.changeCustomSpec = function(comp, spec){
+            comp.specialisation.customSpec = spec;
+        };
+
         $scope.removeSpec = function(comp, spec){
             comp.specialisation.specialitesPossibles.push(spec);
             comp.specChoosen = false;
@@ -134,5 +147,26 @@ angular.module('cops').
             });
             comp.specialisation.specialitesGagnees = compSpecs;
         };
+
+        $scope.canGoToHistorique = function(){
+            var ret = true;
+            ret = CompetencesService.getPointsDisponibles() == 0;
+            if(ret){
+                angular.forEach(CompetencesService.getCompetences(), function(comp){
+                    if(comp.hasOwnProperty('specialisation')){
+                        if(comp.points != 0 && comp.points <= comp.specialisation.niveau){
+                            if(!comp.specialisation.customSpec && (!comp.specialisation.specialitesGagnees || comp.specialisation.specialitesGagnees.length == 0)){
+                                ret = false;
+                            }
+                        }
+                    }
+                });
+            }
+            return ret;
+        };
+
+        $scope.goToHistorique = function(){
+            $state.go('historique');
+        }
 
     }]);
