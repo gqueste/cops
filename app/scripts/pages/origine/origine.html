@@ -1,0 +1,34 @@
+<h1>Historique</h1>
+<h2>Origine sociale</h2>
+<h3 class="text-center">Choisissez une origine sociale dans la liste</h3>
+<div class="row">
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li     class="list-group-item li-origine"
+                    ng-repeat="origine in service.getOrigines()"
+                    ng-click="changeOrigine(origine)">
+                {{origine.nom}}
+                <span ng-if="isActive(origine)" class="fa fa-chevron-right pull-right"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <h4>{{activeOrigine.nom}}</h4>
+        <div>{{activeOrigine.description}}</div>
+        <br>
+        <div>{{activeOrigine.consequences}}</div>
+        <br>
+        <div>Le personnage dispose aussi, au choix :</div>
+        <div>
+            <div class="radio" ng-repeat="possession in activeOrigine.possessionsPossibles">
+                <label>
+                    <input ng-model="activeOrigine.possessionChoisie" name="choixPossessions" ng-value="possession" type="radio" ng-change="changePossession(possession)">
+                    {{possession}}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <button class="btn btn-primary" type="button" ng-click="goToEtudes()">Etudes</button>
+</div>
