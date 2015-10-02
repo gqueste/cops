@@ -23,7 +23,7 @@ angular.module('cops').
 
         $scope.goToEtudes = function(){
             OrigineService.setOrigineSelectionnee($scope.activeOrigine);
-            console.log(OrigineService.getOrigineSelectionnee());
+            $state.go('etudes');
         };
 
     }]);
