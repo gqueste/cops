@@ -1,0 +1,32 @@
+<h1>Historique</h1>
+<h2>Entrée aux COPS</h2>
+<h3 class="text-center">Choisissez une entrée dans la liste</h3>
+<div class="row">
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li     class="list-group-item li-origine"
+                    ng-repeat="entree in service.getEntrees()"
+                    ng-click="changeEntree(entree)">
+                {{entree.nom}}
+                <span ng-if="isActive(entree)" class="fa fa-chevron-right pull-right"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <h4>{{service.getEntreeSelectionnee().nom}}</h4>
+        <div>{{service.getEntreeSelectionnee().description}}</div>
+        <br>
+        <div>{{service.getEntreeSelectionnee().consequences}}</div>
+        <br>
+        <div class="text-center">Choisir une répartition possible.</div>
+        <div class="radio" ng-repeat="option in service.getEntreeSelectionnee().options">
+            <label>
+                <input ng-model="service.getEntreeSelectionnee().optionChoisie" name="choixEntree" ng-value="option" type="radio" ng-change="changeOption(option)">
+                {{option}}
+            </label>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <button class="btn btn-primary" type="button" ng-click="goToRelationsSupplementaires()">Relations Supplémentaires</button>
+</div>

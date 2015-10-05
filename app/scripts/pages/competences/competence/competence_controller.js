@@ -5,7 +5,6 @@ angular.module('cops').
         $scope.service = CompetencesService;
 
         $scope.acquerirComp = function(comp){
-            console.log(comp);
             comp.points = 9;
             CompetencesService.setPointsDisponibles(CompetencesService.getPointsDisponibles() - 1);
         };
@@ -36,6 +35,9 @@ angular.module('cops').
             }
             else{
                 canCompUp = comp.points < CompetencesService.getMaxValue();
+                if(canCompUp && comp.maxPoints){
+                    canCompUp = comp.points < comp.maxPoints;
+                }
             }
             return canCompUp;
         };
