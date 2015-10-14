@@ -4,25 +4,28 @@ angular.module('cops').
 
         $scope.service = OrigineService;
 
-        $scope.activeOrigine = {};
+        function init(){
+            if(!OrigineService.getOrigineSelectionnee().hasOwnProperty('possessionChoisie')){
+                OrigineService.getOrigineSelectionnee().possessionChoisie = OrigineService.getOrigineSelectionnee().possessionsPossibles[0];
+            }
+        }
+
+        init();
 
         $scope.changeOrigine = function(origine){
-            $scope.activeOrigine =  origine;
-            $scope.activeOrigine.possessionChoisie = origine.possessionsPossibles[0];
+            origine.possessionChoisie = origine.possessionsPossibles[0];
+            OrigineService.setOrigineSelectionnee(origine);
         };
 
-        $scope.changeOrigine(OrigineService.getOrigines()['enfant_ghetto']);
-
         $scope.isActive = function(origine){
-            return $scope.activeOrigine.nom == origine.nom;
+            return OrigineService.getOrigineSelectionnee().nom == origine.nom;
         };
 
         $scope.changePossession = function(possession){
-            $scope.activeOrigine.possessionChoisie = possession;
+            OrigineService.getOrigineSelectionnee().possessionChoisie = possession;
         };
 
         $scope.goToEtudes = function(){
-            OrigineService.setOrigineSelectionnee($scope.activeOrigine);
             $state.go('etudes');
         };
 

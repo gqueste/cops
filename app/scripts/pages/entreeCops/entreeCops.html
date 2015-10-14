@@ -22,11 +22,47 @@
         <div class="radio" ng-repeat="option in service.getEntreeSelectionnee().options">
             <label>
                 <input ng-model="service.getEntreeSelectionnee().optionChoisie" name="choixEntree" ng-value="option" type="radio" ng-change="changeOption(option)">
-                {{option}}
+                {{option.description}}
             </label>
+        </div>
+        <div ng-if="service.getEntreeSelectionnee().nom == 'Exotique'">
+            <div class="row">
+                <div class="col-xs-8">
+                    <strong>Ancienneté</strong>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <div class="col-xs-6 text-right">
+                        {{service.getEntreeSelectionnee().optionChoisie.anciennete}}
+                    </div>
+                    <div class="col-xs-6 input-group input-group-sm input-group-btn text-left">
+                        <button class='btn btn-default' type='button' ng-disabled="!canAncienneteDown()" ng-click="ancienneteDown()">
+                            <span class='glyphicon glyphicon-chevron-down'></span>
+                        </button>
+                        <button class='btn btn-default' type='button' ng-disabled="!canAncienneteAdrenalineUp()" ng-click="ancienneteUp()">
+                            <span class='glyphicon glyphicon-chevron-up'></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <strong>Adrénaline</strong>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <div class="col-xs-6 text-right">
+                        {{service.getEntreeSelectionnee().optionChoisie.adrenaline}}
+                    </div>
+                    <div class="col-xs-6 input-group input-group-sm input-group-btn text-left">
+                        <button class='btn btn-default' type='button' ng-disabled="!canAdrenalineDown()" ng-click="adrenalineDown()">
+                            <span class='glyphicon glyphicon-chevron-down'></span>
+                        </button>
+                        <button class='btn btn-default' type='button' ng-disabled="!canAncienneteAdrenalineUp()" ng-click="adrenalineUp()">
+                            <span class='glyphicon glyphicon-chevron-up'></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <div class="text-center">
-    <button class="btn btn-primary" type="button" ng-click="goToRelationsSupplementaires()">Relations Supplémentaires</button>
+    <button class="btn btn-primary" type="button" ng-click="goToRelationsSupplementaires()" ng-disabled="service.getEntreeSelectionnee().optionChoisie.adrenaline + service.getEntreeSelectionnee().optionChoisie.anciennete < 2">Relations Supplémentaires</button>
 </div>

@@ -6,6 +6,8 @@ angular.module('cops').
         var minValue = 2;
         var maxValue = 5;
         var maxAchieved = false;
+        var adrenaline = 0;
+        var anciennete = 0;
         var caracteristiques = {
             carrure:{
                 nom:'Carrure',
@@ -54,7 +56,9 @@ angular.module('cops').
             setMaximumAchieved : setMaximumAchieved,
             getPointsDeVie : getPointsDeVie,
             getPointsAdrenaline : getPointsAdrenaline,
-            getPointsAnciennete : getPointsAnciennete
+            setPointsAdrenaline : setPointsAdrenaline,
+            getPointsAnciennete : getPointsAnciennete,
+            setPointsAnciennete : setPointsAnciennete
         };
 
         function getCaracteristiques(){
@@ -90,11 +94,19 @@ angular.module('cops').
         }
 
         function getPointsAdrenaline(){
-            return 0;
+            return adrenaline;
+        }
+
+        function setPointsAdrenaline(points){
+            adrenaline = points;
         }
 
         function getPointsAnciennete(){
-            return 0;
+            return anciennete;
+        }
+
+        function setPointsAnciennete(points){
+            anciennete = points;
         }
 
     }]);

@@ -13,16 +13,16 @@
         </ul>
     </div>
     <div class="col-md-8">
-        <h4>{{activeOrigine.nom}}</h4>
-        <div>{{activeOrigine.description}}</div>
+        <h4>{{service.getOrigineSelectionnee().nom}}</h4>
+        <div>{{service.getOrigineSelectionnee().description}}</div>
         <br>
-        <div>{{activeOrigine.consequences}}</div>
+        <div>{{service.getOrigineSelectionnee().consequences}}</div>
         <br>
         <div>Le personnage dispose aussi, au choix :</div>
         <div>
-            <div class="radio" ng-repeat="possession in activeOrigine.possessionsPossibles">
+            <div class="radio" ng-repeat="possession in service.getOrigineSelectionnee().possessionsPossibles">
                 <label>
-                    <input ng-model="activeOrigine.possessionChoisie" name="choixPossessions" ng-value="possession" type="radio" ng-change="changePossession(possession)">
+                    <input ng-model="service.getOrigineSelectionnee().possessionChoisie" name="choixPossessions" ng-value="possession" type="radio" ng-change="changePossession(possession)">
                     {{possession}}
                 </label>
             </div>

@@ -62,7 +62,7 @@ angular.module('cops').
             }
         };
 
-        var origineSelectionnee = undefined;
+        var origineSelectionnee = origines['enfant_ghetto'];
 
         return{
             getOrigines : getOrigines,

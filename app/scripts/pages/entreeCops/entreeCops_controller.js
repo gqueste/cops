@@ -1,26 +1,71 @@
 angular.module('cops').
 
-    controller('EntreeCopsCtrl', ['$scope', 'EntreeCopsService', '$state', function($scope, EntreeCopsService, $state){
+    controller('EntreeCopsCtrl', ['$scope', 'EntreeCopsService', 'CaracteristiquesService', '$state', function($scope, EntreeCopsService, CaracteristiquesService , $state){
 
         $scope.service = EntreeCopsService;
+        $scope.pointsDisponibles = 2;
+
+        function init(){
+            if(!EntreeCopsService.getEntreeSelectionnee().hasOwnProperty('optionChoisie')){
+                EntreeCopsService.getEntreeSelectionnee().optionChoisie = EntreeCopsService.getEntreeSelectionnee().options[0];
+            }
+        }
+
+        init();
 
         $scope.changeOption = function(option){
             EntreeCopsService.getEntreeSelectionnee().optionChoisie = option;
+            if(EntreeCopsService.getEntreeSelectionnee().nom == 'Exotique'){
+                $scope.pointsDisponibles = 2;
+            }
         };
 
         $scope.changeEntree = function(entree){
+            entree.optionChoisie = entree.options[0];
             EntreeCopsService.setEntreeSelectionnee(entree);
-            $scope.changeOption(entree.options[0]);
         };
-
-        $scope.changeEntree(EntreeCopsService.getEntrees()['academie']);
 
         $scope.isActive = function(entree){
             return EntreeCopsService.getEntreeSelectionnee().nom == entree.nom;
         };
 
-        $scope.goToRelationsSupplementaires = function(){
+        $scope.canAncienneteDown = function(){
+            return EntreeCopsService.getEntreeSelectionnee().optionChoisie.anciennete > 0;
+        };
 
+        $scope.ancienneteDown = function(){
+            $scope.pointsDisponibles ++;
+            EntreeCopsService.getEntreeSelectionnee().optionChoisie.anciennete --;
+        };
+
+        $scope.ancienneteUp = function(){
+            $scope.pointsDisponibles --;
+            EntreeCopsService.getEntreeSelectionnee().optionChoisie.anciennete ++;
+        };
+
+        $scope.canAncienneteAdrenalineUp = function(){
+            return $scope.pointsDisponibles > 0;
+        };
+
+        $scope.canAdrenalineDown = function(){
+            return EntreeCopsService.getEntreeSelectionnee().optionChoisie.adrenaline > 0;
+        };
+
+        $scope.adrenalineDown = function(){
+            $scope.pointsDisponibles ++;
+            EntreeCopsService.getEntreeSelectionnee().optionChoisie.adrenaline --;
+        };
+
+        $scope.adrenalineUp = function(){
+            $scope.pointsDisponibles --;
+            EntreeCopsService.getEntreeSelectionnee().optionChoisie.adrenaline ++;
+        };
+
+
+        $scope.goToRelationsSupplementaires = function(){
+            CaracteristiquesService.setPointsAdrenaline(EntreeCopsService.getEntreeSelectionnee().optionChoisie.adrenaline);
+            CaracteristiquesService.setPointsAnciennete(EntreeCopsService.getEntreeSelectionnee().optionChoisie.anciennete);
+            //TODO state
         }
 
     }]);
