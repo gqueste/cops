@@ -1,7 +1,39 @@
 <h1>Stages</h1>
 <div ng-if="nbrStagesAvailable > 0">
     <h3 class="text-center">Vous pouvez encore choisir {{service.getNombreStagesDisponibles()}} stages.</h3>
-    <div ng-repeat="stage in stagesAvailable">
-        {{stage.nom}}
+    <h2>Stages disponibles</h2>
+    <div class="panel panel-default" ng-repeat="stage in stagesAvailable">
+        <div class="panel-heading">
+            <strong>{{stage.nom}}</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row stage-item">
+                <div class="col-xs-3">
+                    <strong>Description</strong>
+                </div>
+                <div class="col-xs-9">
+                    {{stage.description}}
+                </div>
+            </div>
+            <div class="row stage-item">
+                <div class="col-xs-3">
+                    <strong>Bonus</strong>
+                </div>
+                <div class="col-xs-9">
+                    {{stage.bonus}}
+                </div>
+            </div>
+            <div class="row stage-item">
+                <div class="col-xs-3">
+                    <strong>Capacité spéciale</strong>
+                </div>
+                <div class="col-xs-9">
+                    <div ng-repeat="capacite in stage.capacites">
+                        <strong>{{capacite.nom}}</strong> : {{capacite.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-block btn-primary">Choisir ce stage</button>
     </div>
 </div>

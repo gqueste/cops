@@ -17,7 +17,12 @@ angular.module('cops').
                 },
                 cumul : false,
                 bonus : "",
-                capacite : "Commandement : lorsqu’il est chef de groupe (et uniquement dans ce cas), le personnage dispose de 1 Point d’ancienneté et de 1 Point d’adrénaline supplémentaires qu’il peut donner normalement à ses équipiers (c’est-à-dire en utilisant les règles normales de chef de groupe). Il lui est impossible d’utiliser ces points de bonus pour luimême. Ces points supplémentaires sont renouvelés à chaque nouvelle séance de jeu. Ils ne sont pas cumulables d’une séance sur l’autre"
+                capacites : [
+                    {
+                        nom : "Commandement",
+                        description : "lorsqu’il est chef de groupe (et uniquement dans ce cas), le personnage dispose de 1 Point d’ancienneté et de 1 Point d’adrénaline supplémentaires qu’il peut donner normalement à ses équipiers (c’est-à-dire en utilisant les règles normales de chef de groupe). Il lui est impossible d’utiliser ces points de bonus pour luimême. Ces points supplémentaires sont renouvelés à chaque nouvelle séance de jeu. Ils ne sont pas cumulables d’une séance sur l’autre"
+                    }
+                ]
             },
             conduite : {
                 nom : "Stage de conduite niveau 1 – « Stage autotamponneuse»",
@@ -30,7 +35,12 @@ angular.module('cops').
                 },
                 cumul : false,
                 bonus : "",
-                capacite : "As de la route : le personnage peut ignorer la perte du premier dé lorsqu’il est engagé dans une poursuite. Il perdra normalement son deuxième dé durant la même poursuite (et les dés suivants !)."
+                capacites : [
+                    {
+                        nom : "As de la route",
+                        description : "le personnage peut ignorer la perte du premier dé lorsqu’il est engagé dans une poursuite. Il perdra normalement son deuxième dé durant la même poursuite (et les dés suivants !)."
+                    }
+                ]
             },
             criminalistique : {
                 nom : "Stage de criminalistique niveau 1 – « Stage crâne d’œuf »",
@@ -43,7 +53,7 @@ angular.module('cops').
                 },
                 cumul : false,
                 bonus : "lorsqu’il fait un jet de compétence scientifique ou de connaissance (Connaissance [au choix], Électronique, Informatique, Mécanique, Scène de crime), le personnage transforme un de ses dés en un dé bleu. Si ce dé indique 1 réussite, il compte alors comme 2 réussites (si le dé est une réussite critique, il est relancé normalement mais il n’ajoutera de toute manière qu’une seule réussite supplémentaire du fait de cette capacité).",
-                capacite : ""
+                capacites : []
             },
             frappe : {
                 nom : "Stage de frappe niveau 1- « Stage punching ball »",
@@ -56,7 +66,7 @@ angular.module('cops').
                 },
                 cumul : true,
                 bonus : "le personnage apprend à frapper plus fort. À chaque fois qu’il suit ce stage, le personnage gagne un bonus potentiel de +1 aux dommages qu’il inflige avec ses poings (en aucun cas lors d’une projection ou d’une immobilisation). La valeur de ce bonus ne peut en aucun cas dépasser la marge de réussite de l’attaque au corps à corps en question",
-                capacite : ""
+                capacites : []
             },
             geopolitique : {
                 nom : "Stage de géopolitique globale – « Sucer des huîtres, lécher des moules »",
@@ -66,12 +76,15 @@ angular.module('cops').
                     charme : 4,
                     education : 4
                 },
-                comp_min : {
-
-                },
+                comp_min : {},
                 cumul : true,
                 bonus : "lorsqu’il fait un jet de Connaissance du milieu spécifique (culture spécifique : haute finance, politique, showbiz…), le personnage transforme un de ses dés en un dé bleu. Si ce dé indique 1 réussite, il compte alors comme 2 réussites (si le dé est une réussite critique, il est relancé normalement mais il n’ajoutera de toute manière qu’une seule réussite supplémentaire du fait de cette capacité).",
-                capacite : "Culture mondaine [choisir un milieu spécifique – haute finance, politique, showbiz…] : le personnage est considéré comme disposant d’un niveau de relation 1 avec tous les représentants du milieu choisi. Le meneur de jeu peut tout à fait décider que des individus particuliers ne sont pas soumis aux effets de cette capacité. Elle ne représente que le fait que le personnage est généralement apprécié des membres d’une communauté, il ne s’agit en aucun cas d’un super pouvoir."
+                capacites : [
+                    {
+                        nom: "Culture mondaine [choisir un milieu spécifique – haute finance, politique, showbiz…]",
+                        description: "le personnage est considéré comme disposant d’un niveau de relation 1 avec tous les représentants du milieu choisi. Le meneur de jeu peut tout à fait décider que des individus particuliers ne sont pas soumis aux effets de cette capacité. Elle ne représente que le fait que le personnage est généralement apprécié des membres d’une communauté, il ne s’agit en aucun cas d’un super pouvoir."
+                    }
+                ]
             },
             gestionFoules : {
                 nom : "Stage de gestion des foules – « Stage matraquage »",
@@ -84,7 +97,12 @@ angular.module('cops').
                 },
                 cumul : true,
                 bonus : "à chaque fois qu’il suit ce stage, le personnage gagne un bonus potentiel de +1 aux dommages qu’il inflige avec une arme de contact. La valeur de ce bonus ne peut en aucun cas dépasser la marge de réussite de l’attaque au corps à corps en question.",
-                capacite : " Imperturbable : le personnage dispose d’un bonus de 1 dé à tous les jets de Sang-froid qu’il doit effectuer pour garder son calme dans une situation stressante (émeute, interrogatoire, intimidation…)."
+                capacites : [
+                    {
+                        nom : "Imperturbable",
+                        description : "le personnage dispose d’un bonus de 1 dé à tous les jets de Sang-froid qu’il doit effectuer pour garder son calme dans une situation stressante (émeute, interrogatoire, intimidation…)."
+                    }
+                ]
             },
             procComm : {
                 nom : "Stage de gestion des procédures de communication au sein du LAPD niveau 1 – « J’embrasse… »",
@@ -97,7 +115,12 @@ angular.module('cops').
                 },
                 cumul : false,
                 bonus : "à l’issue de chaque séance, le personnage peut effectuer un jet de Bureaucratie/Charme (4). Il gagnera alors 1 point d’expérience supplémentaire par point de marge de réussite obtenu (une réussite normale n’apportera donc aucun point supplémentaire). Il est bien évidemment impossible d’utiliser des Points d’adrénaline sur ce jet de dés.",
-                capacite : "Suceur : le personnage disposera d’un dé supplémentaire pour tous ses jets lors d’interactions sociales avec des membres du personnel administratif du LAPD (secrétaires, armuriers, garagistes, officiers supérieurs…). En revanche, et de manière permanente, il subira un malus de 1 dé pour tous ses jets lors d’interactions sociales avec des flics de la rue (enquêteurs, flics de patrouille…). Les relations du personnage avec le personnel scientifique du LAPD ne sont pas affectées. Il est important que le meneur de jeu se souvienne que, même si aucun jet de dés n’est demandé, cette capacité restera active en permanence et affectera de manière sensible la réaction des interlocuteurs du flic."
+                capacites : [
+                    {
+                        nom : "Suceur",
+                        description : "le personnage disposera d’un dé supplémentaire pour tous ses jets lors d’interactions sociales avec des membres du personnel administratif du LAPD (secrétaires, armuriers, garagistes, officiers supérieurs…). En revanche, et de manière permanente, il subira un malus de 1 dé pour tous ses jets lors d’interactions sociales avec des flics de la rue (enquêteurs, flics de patrouille…). Les relations du personnage avec le personnel scientifique du LAPD ne sont pas affectées. Il est important que le meneur de jeu se souvienne que, même si aucun jet de dés n’est demandé, cette capacité restera active en permanence et affectera de manière sensible la réaction des interlocuteurs du flic."
+                    }
+                ]
             },
             protectionPersonnalites : {
                 nom : "Stage de protection des personnalités et de surveillance des biens publics niveau 1 – « Stage pot de fleurs »",
@@ -108,7 +131,12 @@ angular.module('cops').
                 comp_min : {},
                 cumul : true,
                 bonus : "lorsqu’il fait un jet de Connaissance du quartier spécifique où il a effectué son stage, le personnage transforme un de ses dés en un dé bleu. Si ce dé indique 1 réussite, il compte alors comme 2 réussites (si le dé est une réussite critique, il est relancé normalement mais il n’ajoutera de toute manière qu’une seule réussite supplémentaire du fait de cette capacité).",
-                capacite : "Ami du patron : lorsqu’il se trouve dans un quartier dans lequel il a effectué un de ces stages, le personnage peut manger gratuitement dans divers petits restaurants, il bénéficie de tarifs avantageux dans des magasins divers et variés (électronique, alimentaire et peut-être même une armurerie). Le meneur de jeu peut considérer que les petits services sont offerts (un repas, une chambre pour la nuit, un verre ou deux…). Pour ce qui est des achats plus onéreux, le personnage bénéficiera d’une réduction de 15%. L’usage et l’abus de cette capacité peut rapidement faire passer le personnage pour un ripou"
+                capacites : [
+                    {
+                        nom : "Ami du patron",
+                        description : "lorsqu’il se trouve dans un quartier dans lequel il a effectué un de ces stages, le personnage peut manger gratuitement dans divers petits restaurants, il bénéficie de tarifs avantageux dans des magasins divers et variés (électronique, alimentaire et peut-être même une armurerie). Le meneur de jeu peut considérer que les petits services sont offerts (un repas, une chambre pour la nuit, un verre ou deux…). Pour ce qui est des achats plus onéreux, le personnage bénéficiera d’une réduction de 15%. L’usage et l’abus de cette capacité peut rapidement faire passer le personnage pour un ripou"
+                    }
+                ]
             },
             ressourcesHumaines : {
                 nom : "Stage de ressources humaines – « Stage rond-de-cuir »",
@@ -121,7 +149,12 @@ angular.module('cops').
                 },
                 cumul : false,
                 bonus : "le salaire du personnage est majoré de manière permanente d’un bonus représentant 10% de sa valeur de base (avant prime)",
-                capacite : "Carambole : le personnage a appris à utiliser au mieux les rouages de l’administration. Lorsqu’un autre PJ parvient à obtenir du matériel ou une promotion du LAPD, le personnage peut effectuer un jet de Bureaucratie/Sangfroid contre un niveau de difficulté variable choisi par le meneur de jeu (généralement entre 3 et 5) afin de bénéficier du matériel ou de la promotion. L’autre personnage se verra simplement signifier une fin de non recevoir en ce qui concerne sa ou ses demandes. Le meneur de jeu est libre d’apprécier la possibilité ou l’impossibilité d’utiliser cette capacité lors d’une demande particulière. Il a enfin la possibilité d’autoriser le personnage à utiliser cette capacité contre un flic PNJ notable de la campagne. Cette capacité peut aussi être utilisé pour « subtiliser » un stage de niveau 1 ou 2 à une autre équipe de flics (autant dire que le personnage ne s’en fera pas des amis) mais il est tout de même nécessaire de dépenser les points d’expérience nécessaires à l’obtention du stage."
+                capacites : [
+                    {
+                        nom : "Carambole",
+                        description : "le personnage a appris à utiliser au mieux les rouages de l’administration. Lorsqu’un autre PJ parvient à obtenir du matériel ou une promotion du LAPD, le personnage peut effectuer un jet de Bureaucratie/Sangfroid contre un niveau de difficulté variable choisi par le meneur de jeu (généralement entre 3 et 5) afin de bénéficier du matériel ou de la promotion. L’autre personnage se verra simplement signifier une fin de non recevoir en ce qui concerne sa ou ses demandes. Le meneur de jeu est libre d’apprécier la possibilité ou l’impossibilité d’utiliser cette capacité lors d’une demande particulière. Il a enfin la possibilité d’autoriser le personnage à utiliser cette capacité contre un flic PNJ notable de la campagne. Cette capacité peut aussi être utilisé pour « subtiliser » un stage de niveau 1 ou 2 à une autre équipe de flics (autant dire que le personnage ne s’en fera pas des amis) mais il est tout de même nécessaire de dépenser les points d’expérience nécessaires à l’obtention du stage."
+                    }
+                ]
             },
             sensibilisationCulturelle : {
                 nom : "Stage de sensibilisation culturelle niveau 1 – « Serrer des mains… »",
@@ -134,7 +167,12 @@ angular.module('cops').
                 },
                 cumul : true,
                 bonus : "lorsqu’il fait un jet de Connaissance du milieu spécifique (les Latinos de Venice Beach, les AfroAméricains de Beverly Hills, les musulmans de South Central…), le personnage transforme un de ses dés en un dé bleu. Si ce dé indique 1 réussite, il compte alors comme 2 réussites (si le dé est une réussite critique, il est relancé normalement mais il n’ajoutera de toute manière qu’une seule réussite supplémentaire du fait de cette capacité).",
-                capacite : "Oreille de la rue : de manière informelle (pas de jet à effectuer), à chaque séance, le meneur se chargera de communiquer au flic les rumeurs particulières aux quartiers et aux communautés avec lesquelles il a eu l’occasion de travailler. Bien évidemment ces rumeurs seront un mélange d’informations très utiles et parfaitement inutiles. Les informations utiles ainsi divulguées seront celles normalement accessibles auprès d’indics de niveau 1."
+                capacites : [
+                    {
+                        nom : "Oreille de la rue",
+                        description : "de manière informelle (pas de jet à effectuer), à chaque séance, le meneur se chargera de communiquer au flic les rumeurs particulières aux quartiers et aux communautés avec lesquelles il a eu l’occasion de travailler. Bien évidemment ces rumeurs seront un mélange d’informations très utiles et parfaitement inutiles. Les informations utiles ainsi divulguées seront celles normalement accessibles auprès d’indics de niveau 1."
+                    }
+                ]
             },
             techniqueInterrogatoire : {
                 nom : "Stage de technique d’interrogatoire – « Le bon, la brute et le truand »",
@@ -148,7 +186,7 @@ angular.module('cops').
                 },
                 cumul : true,
                 bonus : "lorsqu’il effectue un jet utilisant la compétence d’interrogatoire pour laquelle il a suivi un stage, le personnage peut relancer une fois, par jet, un dé qui indiquait un échec (pas d’effet si tous les dés indiquaient des réussites et cela ne fonctionne pas sur les dés relancés après une réussite critique)",
-                capacite : ""
+                capacites : []
             },
             tir : {
                 nom : "Stage de tir niveau 1 – « Stage Pat Garrett »",
@@ -163,7 +201,16 @@ angular.module('cops').
                 },
                 cumul : true,
                 bonus : "à chaque fois qu’il suit ce stage, le personnage gagne un bonus potentiel de +1 aux dommages qu’il inflige avec la compétence appropriée. La valeur de ce bonus ne peut en aucun cas dépasser la marge de réussite du tir en question",
-                capacite : "Tir dissuasif : lorsque le personnage tente d’effectuer un tir de couverture, il le fait avec un bonus de +2 dés. Tir instinctif : le personnage peut, si sa seule action du tour est d’utiliser son arme à feu, choisir une initiative minimale de –2, même s’il ne possède pas des Réflexes de 5. S’il dégaine une arme, l’initiative minimale est d’un point inférieure à celle normalement prévue par la manière dont il la porte (avec un minimum de –2). De plus, en cas d’égalité lors de la détermination de l’initiative, un tel personnage l’emporte toujours, même si son ou ses adversaires possèdent une agressivité et des Réflexes supérieurs. Si les deux personnages possèdent cette capacité spéciale, ils font feu en même temps"
+                capacites : [
+                    {
+                        nom : "Tir dissuasif",
+                        description : "lorsque le personnage tente d’effectuer un tir de couverture, il le fait avec un bonus de +2 dés."
+                    },
+                    {
+                        nom : "Tir instinctif",
+                        description : "le personnage peut, si sa seule action du tour est d’utiliser son arme à feu, choisir une initiative minimale de –2, même s’il ne possède pas des Réflexes de 5. S’il dégaine une arme, l’initiative minimale est d’un point inférieure à celle normalement prévue par la manière dont il la porte (avec un minimum de –2). De plus, en cas d’égalité lors de la détermination de l’initiative, un tel personnage l’emporte toujours, même si son ou ses adversaires possèdent une agressivité et des Réflexes supérieurs. Si les deux personnages possèdent cette capacité spéciale, ils font feu en même temps"
+                    }
+                ]
             },
             tonfa : {
                 nom : "Stage de tonfa – « Stage tonton bâton »",
@@ -176,7 +223,16 @@ angular.module('cops').
                 },
                 cumul : true,
                 bonus : "à chaque fois qu’il suit ce stage, le personnage gagne un bonus potentiel de +1 aux dommages qu’il inflige avec un tonfa. La valeur de ce bonus ne peut en aucun cas dépasser la marge de réussite de l’attaque au corps à corps en question.",
-                capacite : "Immobilisation : sur un jet d’attaque réussi avec son tonfa (donc avec une marge de réussite au moins égale à 1), l’attaquant immobilise son adversaire (aucun dommage, pas de Force d’arrêt). Pour réaliser cette attaque, le personnage reçoit un bonus de 1 dé. Chaque tour suivant, le personnage immobilisé peut choisir de perdre 2 Points de vie pour pouvoir tenter de se libérer. On effectue alors un nouveau jet d’opposition de Arme de contact [matraque]/Corps à corps (avec un bonus de 1 dé pour l’utilisateur du tonfa). Il faut vaincre le personnage qui maintient la prise pour se libérer (en cas d’égalité, la prise est donc maintenue). Parade : lorsque le personnage combat au corps à corps avec un tonfa et que son adversaire remporte l’opposition avec une marge de réussite de 1 ou de 2 on estime que l’attaque a été parée : elle ne cause aucun dommage (mais le personnage ne peut pas causer des dommages à son adversaire pour autant)."
+                capacites : [
+                    {
+                        nom : "Immobilisation",
+                        description : "sur un jet d’attaque réussi avec son tonfa (donc avec une marge de réussite au moins égale à 1), l’attaquant immobilise son adversaire (aucun dommage, pas de Force d’arrêt). Pour réaliser cette attaque, le personnage reçoit un bonus de 1 dé. Chaque tour suivant, le personnage immobilisé peut choisir de perdre 2 Points de vie pour pouvoir tenter de se libérer. On effectue alors un nouveau jet d’opposition de Arme de contact [matraque]/Corps à corps (avec un bonus de 1 dé pour l’utilisateur du tonfa). Il faut vaincre le personnage qui maintient la prise pour se libérer (en cas d’égalité, la prise est donc maintenue)."
+                    },
+                    {
+                        nom : "Parade",
+                        description : "lorsque le personnage combat au corps à corps avec un tonfa et que son adversaire remporte l’opposition avec une marge de réussite de 1 ou de 2 on estime que l’attaque a été parée : elle ne cause aucun dommage (mais le personnage ne peut pas causer des dommages à son adversaire pour autant)."
+                    }
+                ]
             },
             sportif : {
                 nom : "Stage sportif – « Stage gonflette »",
@@ -187,7 +243,12 @@ angular.module('cops').
                 comp_min : {},
                 cumul : true,
                 bonus : "le personnage gagne un bonus permanent de 3 points de vie (jusqu’à un maximum de +6 pour deux stages).",
-                capacite : "Bonne condition physique : le personnage augmente sa Carrure de 1 point (jusqu’à un maximum de 5) s’il prend le temps d’entretenir sa forme en passant au moins 2 heures par jour à faire du sport. S’il arrête son entraînement pendant une semaine, il perd son bonus de Carrure mais peut à nouveau l’obtenir au bout d’un mois de séances de sport journalières."
+                capacites : [
+                    {
+                        nom : "Bonne condition physique",
+                        description : "le personnage augmente sa Carrure de 1 point (jusqu’à un maximum de 5) s’il prend le temps d’entretenir sa forme en passant au moins 2 heures par jour à faire du sport. S’il arrête son entraînement pendant une semaine, il perd son bonus de Carrure mais peut à nouveau l’obtenir au bout d’un mois de séances de sport journalières."
+                    }
+                ]
             }
         };
 
