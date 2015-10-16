@@ -62,10 +62,10 @@ angular.module('cops').
         };
 
 
-        $scope.goToRelationsSupplementaires = function(){
+        $scope.goToStages = function(){
             CaracteristiquesService.setPointsAdrenaline(EntreeCopsService.getEntreeSelectionnee().optionChoisie.adrenaline);
             CaracteristiquesService.setPointsAnciennete(EntreeCopsService.getEntreeSelectionnee().optionChoisie.anciennete);
-            //TODO state
+            $state.go('stages');
         }
 
     }]);
