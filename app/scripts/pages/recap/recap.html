@@ -1,0 +1,201 @@
+<h1 class="text-center">Feuille de personnage</h1>
+<h2>Caractéristiques</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="col-sm-6 row panel panel-default" ng-repeat="carac in caracteristiquesService.getCaracteristiques() | object2Array | orderBy: 'placeFiche'">
+            <div class="panel-body">
+                <div class="col-sm-6 text-center">
+                    <strong>{{carac.nom}}</strong>
+                </div>
+                <div class="col-sm-6 text-center">
+                    {{carac.points}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="col-sm-12 row panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-6 text-center">
+                    <strong>Points de vie</strong>
+                </div>
+                <div class="col-sm-6 text-center">
+                    {{caracteristiquesService.getPointsDeVie()}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 row panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-6 text-center">
+                    <strong>Points d'ancienneté</strong>
+                </div>
+                <div class="col-sm-6 text-center">
+                    {{caracteristiquesService.getPointsAnciennete()}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 row panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-6 text-center">
+                    <strong>Points d'adrénaline</strong>
+                </div>
+                <div class="col-sm-6 text-center">
+                    {{caracteristiquesService.getPointsAdrenaline()}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 row panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-6 text-center">
+                    <strong>Points d'expérience</strong>
+                </div>
+                <div class="col-sm-6 text-center">
+                    0
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Stages</h2>
+<div class="row">
+    <div class="col-sm-4 panel panel-default" ng-repeat="stage in stagesService.getStagesObtenus()">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-10 text-center">
+                    <strong>Stage</strong>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <strong>Niv</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 text-center">
+                    {{stage.nom}}
+                </div>
+                <div class="col-sm-2 text-center">
+                    1
+                </div>
+            </div>
+            <hr>
+            <div class="row" ng-if="stage.bonus != ''">
+                <div class="col-md-3">
+                    <strong>Bonus :</strong>
+                </div>
+                <div class="col-md-9">
+                    {{stage.bonus}}
+                </div>
+            </div>
+            <hr>
+            <div class="row" ng-if="stage.capacites.length > 0">
+                <div class="col-md-3">
+                    <strong>Capacité spéciale :</strong>
+                </div>
+                <div class="col-md-9">
+                    <div ng-repeat="capacite in stage.capacites">
+                        <strong>{{capacite.nom}}</strong> : {{capacite.description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Compétences</h2>
+<div class="row">
+    <div class="col-md-4" ng-repeat="competence in competencesService.getCompetences()">
+        <div class="row">
+            <div class="col-md-9 text-center">
+                {{competence.nom}}
+                <span ng-if="competence.specialisation.specialitesObtenues.length > 0 || competence.specialisation.specialitesGagnees.length > 0 || competence.specialisation.customSpec">
+                    (
+                    <span ng-repeat="spec in competence.specialisation.specialitesObtenues">
+                        {{spec}}
+                    </span>
+                    <span ng-repeat="spec in competence.specialisation.specialitesGagnees">
+                        {{spec}}
+                    </span>
+                    <span ng-if="competence.specialisation.customSpec">
+                        {{competence.specialisation.customSpec}}
+                    </span>
+                    )
+                </span>
+            </div>
+            <div class="col-md-3 text-center">
+                <span ng-if="competence.points > 0">{{competence.points}} +</span>
+                <span ng-if="competence.points == 0">9 +</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Historique</h2>
+<h3>Origine : {{origineService.getOrigineSelectionnee().nom}}</h3>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Description</strong>
+    </div>
+    <div class="col-md-9">
+        {{origineService.getOrigineSelectionnee().description}}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Conséquences</strong>
+    </div>
+    <div class="col-md-9">
+        {{origineService.getOrigineSelectionnee().consequences}}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Possession</strong>
+    </div>
+    <div class="col-md-9">
+        {{origineService.getOrigineSelectionnee().possessionChoisie}}
+    </div>
+</div>
+<hr>
+
+<h3>Etudes : {{etudesService.getEtudeSelectionnee().nom}}</h3>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Description</strong>
+    </div>
+    <div class="col-md-9">
+        {{etudesService.getEtudeSelectionnee().description}}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Conséquences</strong>
+    </div>
+    <div class="col-md-9">
+        {{etudesService.getEtudeSelectionnee().consequences}}
+    </div>
+</div>
+
+<hr>
+<h3>Entrée chez les C.O.P.S : {{entreeCopsService.getEntreeSelectionnee().nom}}</h3>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Description</strong>
+    </div>
+    <div class="col-md-9">
+        {{entreeCopsService.getEntreeSelectionnee().description}}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <strong>Conséquences</strong>
+    </div>
+    <div class="col-md-9">
+        {{entreeCopsService.getEntreeSelectionnee().consequences}}
+    </div>
+</div>
+
+<h1 class="text-center">Bienvenue chez les C.O.P.S !</h1>

@@ -113,15 +113,20 @@ angular.module('cops').
         };
 
         $scope.removeSpec = function(comp, spec){
-            comp.specialisation.specialitesPossibles.push(spec);
-            comp.specChoosen = false;
-            var compSpecs = [];
-            comp.specialisation.specialitesGagnees.forEach(function(element){
-                if(element != spec){
-                    compSpecs.push(element);
-                }
-            });
-            comp.specialisation.specialitesGagnees = compSpecs;
+            if(spec == 'customSpec'){
+                comp.specialisation.customSpec = '';
+            }
+            else{
+                comp.specialisation.specialitesPossibles.push(spec);
+                comp.specChoosen = false;
+                var compSpecs = [];
+                comp.specialisation.specialitesGagnees.forEach(function(element){
+                    if(element != spec){
+                        compSpecs.push(element);
+                    }
+                });
+                comp.specialisation.specialitesGagnees = compSpecs;
+            }
         };
 
     }]);

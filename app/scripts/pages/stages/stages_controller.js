@@ -7,8 +7,6 @@ angular.module('cops').
         $scope.stagesAvailable = {};
         $scope.nbrStagesAvailable = 0;
 
-        console.log(CaracteristiquesService.getCaracteristiques());
-
         init();
 
         function init(){
