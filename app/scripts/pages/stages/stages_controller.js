@@ -1,11 +1,13 @@
 angular.module('cops').
 
-    controller('StagesCtrl', ['$scope', 'StagesService', 'CompetencesService', 'CaracteristiquesService',
-        function($scope, StagesService, CompetencesService, CaracteristiquesService){
+    controller('StagesCtrl', ['$scope', 'StagesService', 'CompetencesService', 'CaracteristiquesService', '$state',
+        function($scope, StagesService, CompetencesService, CaracteristiquesService, $state){
 
         $scope.service = StagesService;
         $scope.stagesAvailable = {};
         $scope.nbrStagesAvailable = 0;
+
+        console.log(CaracteristiquesService.getCaracteristiques());
 
         init();
 
@@ -80,11 +82,17 @@ angular.module('cops').
         }
 
         function caracOK(seuil, carac){
-            return CaracteristiquesService.getCaracteristiques()[carac] >= seuil;
+            if(carac == 'anciennete'){
+                return CaracteristiquesService.getPointsAnciennete()>= seuil;
+            }
+            if(carac == 'adrenaline'){
+                return CaracteristiquesService.getPointsAdrenaline() >= seuil;
+            }
+            return CaracteristiquesService.getCaracteristiques()[carac].points >= seuil;
         }
 
         function compOK(seuil, comp){
-            return CompetencesService.getCompetences()[comp] <= seuil;
+            return CompetencesService.getCompetences()[comp].points <= seuil;
         }
 
         function estDejaObtenu(stage){
@@ -95,5 +103,19 @@ angular.module('cops').
                 }
             }
             return ret;
+        }
+
+        $scope.choisirStage = function(stage){
+            StagesService.addStageObtenu(stage);
+            init();
+        };
+
+        $scope.removeStageObtenu = function(stage) {
+            StagesService.removeStageObtenu(stage);
+            init();
+        };
+
+        $scope.goToRecap = function(){
+            $state.go('recap');
         }
     }]);

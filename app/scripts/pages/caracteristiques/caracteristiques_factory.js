@@ -19,7 +19,7 @@ angular.module('cops').
                 description:"Cette caractéristique représente le charisme du personnage, son empathie et son attitude vis-à-vis des autres. Une haute valeur de Charme peut signifier que le personnage est beau mais ce n’est pas toujours le cas, loin de là.",
                 points:0
             },
-            coordiniation:{
+            coordination:{
                 nom:'Coordination',
                 description:"Cette caractéristique représente la dextérité manuelle et la synchronisation entre les gestes et les sens.",
                 points:0

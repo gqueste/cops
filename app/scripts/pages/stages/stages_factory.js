@@ -285,10 +285,20 @@ angular.module('cops').
         }
 
         function removeStageObtenu(stage){
+            //remove le premier stage de ce nom
             var arr = [];
+            var supprDone = false;
             for(var i = 0; i < stagesObtenus.length; i++){
-                if(stagesObtenus[i].nom != stage.nom){
+                if(supprDone){
                     arr.push(stagesObtenus[i]);
+                }
+                else{
+                    if(stagesObtenus[i].nom != stage.nom){
+                        arr.push(stagesObtenus[i]);
+                    }
+                    else{
+                        supprDone = true;
+                    }
                 }
             }
             stagesObtenus = arr;

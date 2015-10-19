@@ -1,10 +1,26 @@
 <h1>Stages</h1>
+<div ng-if="service.getStagesObtenus().length > 0">
+    <h2>Stages choisis</h2>
+    <div ng-repeat="stage in service.getStagesObtenus() track by $index">
+        <span class="panel panel-default">
+            {{stage.nom}} <i class="fa fa-times" style="cursor:pointer" ng-click="removeStageObtenu(stage)"></i>
+        </span>
+    </div>
+</div>
 <div ng-if="nbrStagesAvailable > 0">
     <h3 class="text-center">Vous pouvez encore choisir {{service.getNombreStagesDisponibles()}} stages.</h3>
     <h2>Stages disponibles</h2>
     <div class="panel panel-default" ng-repeat="stage in stagesAvailable">
         <div class="panel-heading">
-            <strong>{{stage.nom}}</strong>
+            <div class="row">
+                <div class="col-sm-8">
+                    <strong>{{stage.nom}}</strong>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <span class="label label-success" ng-if="stage.cumul">Cumulable</span>
+                    <span class="label label-danger" ng-if="!stage.cumul">Non cumulable</span>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <div class="row stage-item">
@@ -34,6 +50,9 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-block btn-primary">Choisir ce stage</button>
+        <button class="btn btn-block btn-primary" ng-click="choisirStage(stage)" ng-disabled="service.getNombreStagesDisponibles() <= 0">Choisir ce stage</button>
     </div>
+</div>
+<div class="text-center">
+    <button class="btn btn-primary" type="button" ng-click="goToRecap()" ng-disabled="service.getNombreStagesDisponibles() > 0">Terminer la création de personnage</button>
 </div>
