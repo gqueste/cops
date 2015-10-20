@@ -12,6 +12,17 @@ angular.module('cops').
             changeChoix(choix);
         };
 
+        init();
+
+        function init(){
+            angular.forEach(CompetencesService.getCompetences(), function(value){
+                if(value.hasOwnProperty('maxPoints')){
+                    value.points = value.maxPoints;
+                    CompetencesService.setPointsDisponibles(0);
+                }
+            });
+        }
+
         function reinitChoixBase(){
             CompetencesService.getChoixBasePossibilites().forEach(function(value){
                 var comp = CompetencesService.getCompetences()[value];
