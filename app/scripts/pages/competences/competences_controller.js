@@ -17,6 +17,7 @@ angular.module('cops').
         function init(){
             angular.forEach(CompetencesService.getCompetences(), function(value){
                 if(value.hasOwnProperty('maxPoints')){
+                    //si maxPoints, ça veut dire qu'on est revenu depuis les études donc possibilité d'avoir été changé. On reset.
                     value.points = value.maxPoints;
                     CompetencesService.setPointsDisponibles(0);
                 }
