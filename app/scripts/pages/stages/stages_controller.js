@@ -1,7 +1,9 @@
 angular.module('cops').
 
-    controller('StagesCtrl', ['$scope', 'StagesService', 'CompetencesService', 'CaracteristiquesService', '$state',
-        function($scope, StagesService, CompetencesService, CaracteristiquesService, $state){
+    controller('StagesCtrl', ['$scope', 'StagesService', 'CompetencesService', 'CaracteristiquesService', '$state', 'FooterService',
+        function($scope, StagesService, CompetencesService, CaracteristiquesService, $state, FooterService){
+
+        FooterService.setPercentage(95);
 
         $scope.service = StagesService;
         $scope.stagesAvailable = {};

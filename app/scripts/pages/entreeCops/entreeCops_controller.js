@@ -1,7 +1,8 @@
 angular.module('cops').
 
-    controller('EntreeCopsCtrl', ['$scope', 'EntreeCopsService', 'CaracteristiquesService', '$state', function($scope, EntreeCopsService, CaracteristiquesService , $state){
+    controller('EntreeCopsCtrl', ['$scope', 'EntreeCopsService', 'CaracteristiquesService', '$state', 'FooterService', function($scope, EntreeCopsService, CaracteristiquesService, $state, FooterService){
 
+        FooterService.setPercentage(80);
         $scope.service = EntreeCopsService;
         $scope.pointsDisponibles = 2;
 

@@ -7,11 +7,11 @@ app.use(express.static(__dirname + '/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules')); //add this so the browser can GET the node_modules files
 
 app.get('/', function(req, res){
-    res.sendFile('index.html', {"root": __dirname});
+    res.sendFile('index.html', {"root": __dirname+ '/app'});
 });
 
 app.get('*', function(req, res){
-    res.sendFile('index.html', {"root": __dirname});
+    res.sendFile('index.html', {"root": __dirname+ '/app'});
 });
 
 var server = app.listen(app.get('port'), function() {

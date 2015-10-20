@@ -1,8 +1,9 @@
 angular.module('cops').
 
-    controller('CaracteristiquesCtrl', ['$scope', 'CaracteristiquesService', '$state', function($scope, CaracteristiquesService, $state){
+    controller('CaracteristiquesCtrl', ['$scope', 'CaracteristiquesService', '$state', 'FooterService', function($scope, CaracteristiquesService, $state, FooterService){
 
         $scope.service = CaracteristiquesService;
+        FooterService.setPercentage(15);
 
         init();
 

@@ -1,8 +1,9 @@
 angular.module('cops').
 
-    controller('CompetencesCtrl', ['$scope', 'CompetencesService', '$state', function($scope, CompetencesService, $state){
+    controller('CompetencesCtrl', ['$scope', 'CompetencesService', '$state', 'FooterService', function($scope, CompetencesService, $state, FooterService){
 
         $scope.service = CompetencesService;
+        FooterService.setPercentage(30);
 
         $scope.limitOptionBase = true;
 

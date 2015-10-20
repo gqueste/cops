@@ -1,6 +1,8 @@
 angular.module('cops').
 
-    controller('EtudesCtrl', ['$scope', 'CompetencesService', 'EtudesService', '$state', function($scope, CompetencesService, EtudesService, $state){
+    controller('EtudesCtrl', ['$scope', 'CompetencesService', 'EtudesService', '$state', 'FooterService', function($scope, CompetencesService, EtudesService, $state, FooterService){
+
+        FooterService.setPercentage(65);
 
         $scope.CompetencesService = CompetencesService;
         $scope.EtudesService = EtudesService;

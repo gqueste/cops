@@ -1,7 +1,9 @@
 angular.module('cops').
 
-    controller('RecapCtrl', ['$scope', 'StagesService', 'CompetencesService', 'CaracteristiquesService', 'OrigineService', 'EtudesService', 'EntreeCopsService',
-        function($scope, StagesService, CompetencesService, CaracteristiquesService, OrigineService, EtudesService, EntreeCopsService){
+    controller('RecapCtrl', ['$scope', 'StagesService', 'CompetencesService', 'CaracteristiquesService', 'OrigineService', 'EtudesService', 'EntreeCopsService', 'FooterService',
+        function($scope, StagesService, CompetencesService, CaracteristiquesService, OrigineService, EtudesService, EntreeCopsService, FooterService){
+
+            FooterService.setPercentage(100);
 
             $scope.caracteristiquesService = CaracteristiquesService;
             $scope.competencesService = CompetencesService;

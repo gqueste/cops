@@ -1,7 +1,8 @@
 angular.module('cops').
 
-    controller('OrigineCtrl', ['$scope', 'OrigineService', '$state', function($scope, OrigineService, $state){
+    controller('OrigineCtrl', ['$scope', 'OrigineService', '$state', 'FooterService', function($scope, OrigineService, $state, FooterService){
 
+        FooterService.setPercentage(50);
         $scope.service = OrigineService;
 
         function init(){
