@@ -14,7 +14,7 @@
                 <button class='btn btn-default' type='button' ng-disabled="!canCompUp(comp)" ng-click="compUp(comp)">
                     <span class='glyphicon glyphicon-chevron-up'></span>
                 </button>
-                <button ng-if="comp.niveau == 'option' && limitoptionBase" class="btn btn-danger" type="button" ng-click="retirerComp(comp)">Retirer</button>
+                <button ng-if="comp.niveau == 'option'" class="btn btn-danger" type="button" ng-click="retirerComp(comp)">Retirer</button>
             </div>
         </div>
         <div ng-if="comp.points == 0">
