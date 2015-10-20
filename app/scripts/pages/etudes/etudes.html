@@ -25,5 +25,5 @@
     </div>
 </div>
 <div class="text-center">
-    <button class="btn btn-primary" type="button" ng-disabled="!CompetencesService.getPointsDisponibles() == 0" ng-click="goToEntreeCops()">Etudes</button>
+    <button class="btn btn-primary" type="button" ng-disabled="!CompetencesService.getPointsDisponibles() == 0 && activeEtude.nom != 'Exotique'" ng-click="goToEntreeCops()">Etudes</button>
 </div>
