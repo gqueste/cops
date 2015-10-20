@@ -5,8 +5,6 @@ angular.module('cops').
         $scope.service = CaracteristiquesService;
         FooterService.setPercentage(15);
 
-        init();
-
         $scope.caracUp = function(carac){
             carac.points ++;
             CaracteristiquesService.setPointsDisponibles(CaracteristiquesService.getPointsDisponibles()-1);
@@ -22,13 +20,6 @@ angular.module('cops').
             carac.points --;
             CaracteristiquesService.setPointsDisponibles(CaracteristiquesService.getPointsDisponibles()+1);
         };
-
-        function init(){
-            angular.forEach(CaracteristiquesService.getCaracteristiques(), function(value, key) {
-                CaracteristiquesService.getCaracteristiques()[key].points = 2;
-                CaracteristiquesService.setPointsDisponibles(CaracteristiquesService.getPointsDisponibles()-2);
-            });
-        }
 
         $scope.goCompetences = function(){
             $state.go('competences');
